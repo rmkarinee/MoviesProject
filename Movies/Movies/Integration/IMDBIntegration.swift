@@ -9,42 +9,20 @@ import Foundation
 import UIKit
 
 class IMDBIntegration{
+    
+    let apiKey: String = "38e89175a62e8680dfb4ade7ce733f0f"
+    let language: String = "pt-BR"
 
-    func initRequest(){
+    func getDataFromUrl(){
         
-        let headers = [
-            "x-rapidapi-host": "imdb8.p.rapidapi.com",
-            "x-rapidapi-key": "9205aa15d6msh95a8664342e512ap16aeaajsn15fa4638babe"
-        ]
-        
-        var request = URLRequest(url: NSURL(string: "https://imdb8.p.rapidapi.com/title/find?q=game%20of%20thr")! as URL,
-                                                cachePolicy: .useProtocolCachePolicy,
-                                            timeoutInterval: 10.0)
-        request.httpMethod = "GET";
-        request.allHTTPHeaderFields = headers
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=" + self.apiKey + "&language=" + self.language + "&page=1")!
 
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            
-            _ = response as? HTTPURLResponse
-            if let data = data {
-                do {
-                
-                    let jsonData = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-                    
-                    
-                    let results = jsonData["results"]
-                    print("RESULTE:::: \(String(describing: results))")
-
-
-                } catch {
-                    print("JSON error: \(error.localizedDescription)")
-                }
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            print(String(data: data, encoding: .utf8)!)
         }
-        })
 
-        dataTask.resume()
-        return
+        task.resume()
         
     }
 

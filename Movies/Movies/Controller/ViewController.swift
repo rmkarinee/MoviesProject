@@ -14,7 +14,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         
         let newJson = IMDBIntegration()
-        newJson.initRequest()
+        newJson.getDataFromUrl()
         
         super.viewDidLoad()
         

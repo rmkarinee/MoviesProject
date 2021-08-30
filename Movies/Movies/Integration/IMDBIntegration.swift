@@ -15,12 +15,35 @@ class IMDBIntegration{
 
     func getDataFromUrl(){
         
+        let session = URLSession.shared
+        
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=" + self.apiKey + "&language=" + self.language + "&page=1")!
+        
+        let task = session.dataTask(with: url, completionHandler: { data, response, error in
+            
+            if error != nil {
+                print("An request error occurred: \(String(describing: error))")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Status Code Error : \(String(describing: response))")
+                return
+            }
+            
+            do {
+                
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                print("JSOOONNNN: \(String(describing: json))")
+                
+            } catch {
+                print("JSON error: \(error.localizedDescription)")
+            }
 
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
-        }
+//            guard let data = data else { return }
+//            print(String(data: data, encoding: .utf8)!)
+        })
 
         task.resume()
         

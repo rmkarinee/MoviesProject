@@ -15,14 +15,14 @@ class DetalheFilmeViewController: UIViewController{
     @IBOutlet weak var detalheLabelTitulo: UILabel!
     @IBOutlet weak var detalheLabelDescricao: UILabel!
     
-    var filme: Filme!
+    var filme: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        detalheImageView.image = filme.image
+//        detalheImageView.image = movie.image
         detalheLabelTitulo.text = filme.title
-        detalheLabelDescricao.text = filme.description
+        detalheLabelDescricao.text = filme.overview
         
     }
     

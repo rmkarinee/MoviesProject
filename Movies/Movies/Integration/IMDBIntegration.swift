@@ -13,7 +13,7 @@ class IMDBIntegration{
     let apiKey: String = "38e89175a62e8680dfb4ade7ce733f0f"
     let language: String = "pt-BR"
 
-    func getDataFromUrl(){
+    func getDataFromUrl(completion: @escaping (Page) -> Void){
         
         let session = URLSession.shared
         
@@ -32,17 +32,16 @@ class IMDBIntegration{
                 return
             }
             
+            
             do {
-                
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                print("JSOOONNNN: \(String(describing: json))")
+        
+                let page = try JSONDecoder().decode(Page.self, from: data!)
+                completion(page)
                 
             } catch {
                 print("JSON error: \(error.localizedDescription)")
             }
 
-//            guard let data = data else { return }
-//            print(String(data: data, encoding: .utf8)!)
         })
 
         task.resume()

@@ -9,38 +9,40 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var filmes: [Filme] = []
+    @IBOutlet var movieTableView: UITableView!
+    
+    var movies: [Movie] = []{
+        didSet{
+            DispatchQueue.main.async {
+                self.movieTableView.reloadData()
+            }
+        }
+    }
+    var page: Page?
+    
+    func completionService(page: Page){
+        self.page = page
+        self.movies = page.results
+        print(movies)
+    }
 
     override func viewDidLoad() {
         
-        let newJson = IMDBIntegration()
-        newJson.getDataFromUrl()
+//        let newJson = IMDBIntegration()
+//        newJson.getDataFromUrl(){ page in
+//            self.page = page
+//        }
+        
+        let result = IMDBIntegration().getDataFromUrl(completion: completionService(page:))
+        
+        movieTableView.delegate = self
+        movieTableView.dataSource = self
         
         super.viewDidLoad()
         
-        var filme: Filme
         
-        filme = Filme(title: "007", description: "Descrição Filme 1", year: 2010, image: UIImage(named: "filme1")!)
-        filmes.append(filme)
-        filme = Filme(title: "Star Wars", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme2")!)
-        filmes.append(filme)
-        filme = Filme(title: "Impacto Mortal", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme3")!)
-        filmes.append(filme)
-        filme = Filme(title: "DeadPool", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme4")!)
-        filmes.append(filme)
-        filme = Filme(title: "O Regresso", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme5")!)
-        filmes.append(filme)
-        filme = Filme(title: "A Herdeira", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme6")!)
-        filmes.append(filme)
-        filme = Filme(title: "O Crime não tem limites", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme7")!)
-        filmes.append(filme)
-        filme = Filme(title: "Regresso do mal", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme8")!)
-        filmes.append(filme)
-        filme = Filme(title: "Tarzan", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme9")!)
-        filmes.append(filme)
-        filme = Filme(title: "Hardcore", description: "Descrição Filme 2", year: 2010, image: UIImage(named: "filme10")!)
-        filmes.append(filme)
-        
+//        filme = Filme(title: "007", description: "Descrição Filme 1", year: 2010, image: UIImage(named: "filme1")!)
+//        filmes.append(filme)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,7 +51,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return filmes.count
+        return movies.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -58,15 +60,15 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let filme = filmes[indexPath.row]
+        let movie = movies[indexPath.row]
         
         let celulaReuso = "celulaReuso"
         
         let celula = tableView.dequeueReusableCell(withIdentifier: celulaReuso, for: indexPath) as! MovieCell
         
-        celula.movieImageView.image = filme.image
-        celula.movieLabelTitle.text = filme.title
-        celula.movieLabelDescription.text = filme.description
+        //celula.movieImageView.image = filme.image
+        celula.movieLabelTitle.text = movie.title
+        celula.movieLabelDescription.text = movie.overview
         
         
         /*
@@ -87,7 +89,7 @@ class ViewController: UITableViewController {
         if segue.identifier == "detailsMovie"{
             
             if let indexPath = tableView.indexPathForSelectedRow{
-                let filmeSelecionado = self.filmes[ indexPath.row ]
+                let filmeSelecionado = self.movies[ indexPath.row ]
                 let viewControlleDestino = segue.destination as! DetalheFilmeViewController
                 viewControlleDestino.filme = filmeSelecionado
                 

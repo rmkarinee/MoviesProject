@@ -6,22 +6,18 @@
 //
 import UIKit
 
-class Filme{
-    
-    var title: String!
-    var description: String!
-    var year: Int!
-    var image: UIImage!
-    
-    
-    init( title: String, description: String , year: Int, image: UIImage){
-    
-        self.title = title
-        self.description = description
-        self.year = year
-        self.image = image
-        
-        
-    }
-    
+struct Page: Decodable {
+    var results: [Movie]
 }
+
+struct Movie: Decodable {
+    
+    var title: String?
+    var overview: String?
+    var year: Int?
+    var poster_path: String?
+    var vote_average: Float?
+    var vote_count: Int?
+
+}
+    

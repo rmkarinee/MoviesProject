@@ -11,13 +11,13 @@
         <!--MEUS FILMES-->
         <scene sceneID="isx-9o-yoq">
             <objects>
-                <tableViewController id="peC-Oa-6kq" customClass="ViewController" customModule="ProjectIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="peC-Oa-6kq" customClass="ViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FyN-Fd-ygu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="celulaReuso" rowHeight="100" id="aqK-YK-zYo" customClass="MovieCell" customModule="ProjectIOS" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="celulaReuso" rowHeight="100" id="aqK-YK-zYo" customClass="MovieCell" customModule="Movies" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aqK-YK-zYo" id="MX9-bR-1vr">
@@ -36,8 +36,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="j30-PQ-Di8">
-                                            <rect key="frame" x="116" y="26.5" width="52.5" height="47"/>
+                                        <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="j30-PQ-Di8">
+                                            <rect key="frame" x="116" y="18.5" width="52.5" height="63"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0c-IT-cZG" userLabel="Filme Label Titulo">
                                                     <rect key="frame" x="0.0" y="0.0" width="52.5" height="23"/>
@@ -46,7 +46,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUz-Ay-1RA">
-                                                    <rect key="frame" x="0.0" y="31" width="52.5" height="16"/>
+                                                    <rect key="frame" x="0.0" y="47" width="52.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                                     <nil key="highlightedColor"/>
@@ -75,6 +75,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="MEUS FILMES" id="ebB-WF-OJR"/>
+                    <connections>
+                        <outlet property="movieTableView" destination="FyN-Fd-ygu" id="RO1-UV-eBW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJ3-v8-ait" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +86,7 @@
         <!--Detalhe Filme View Controller-->
         <scene sceneID="R1v-48-HQ7">
             <objects>
-                <viewController id="HN1-PV-OOl" customClass="DetalheFilmeViewController" customModule="ProjectIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HN1-PV-OOl" customClass="DetalheFilmeViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nHk-N2-2O0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,6 +141,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgc-XQ-7z1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="20.289855072463769" y="112.5"/>
+        </scene>
+        <!--Movie Table View Controller-->
+        <scene sceneID="hx3-m5-gtY">
+            <objects>
+                <viewController id="4sh-Lz-WTO" customClass="MovieTableViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aiM-fx-H4U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jvb-MB-QoG">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vmP-Og-82y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vmP-Og-82y" firstAttribute="bottom" secondItem="jvb-MB-QoG" secondAttribute="bottom" id="0xz-6O-WcE"/>
+                            <constraint firstItem="vmP-Og-82y" firstAttribute="trailing" secondItem="jvb-MB-QoG" secondAttribute="trailing" id="pyA-ec-4H5"/>
+                            <constraint firstItem="jvb-MB-QoG" firstAttribute="top" secondItem="vmP-Og-82y" secondAttribute="top" id="rOW-nP-fi7"/>
+                            <constraint firstItem="jvb-MB-QoG" firstAttribute="leading" secondItem="vmP-Og-82y" secondAttribute="leading" id="uMD-9C-06t"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wR7-WX-OwJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="841"/>
         </scene>
     </scenes>
     <resources>

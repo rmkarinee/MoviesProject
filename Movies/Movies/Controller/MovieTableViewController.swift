@@ -6,8 +6,34 @@
 //
 
 import Foundation
+import UIKit
 
-class MovieTableViewController: ViewController{
+class MovieTableViewController: UIViewController{
     
+    @IBOutlet weak var movieTableView: UITableView!
+    
+  
+    var movies: [Movie] = []{
+        didSet{
+            DispatchQueue.main.async {
+                self.movieTableView.reloadData()
+            }
+        }
+    }
+    var page: Page?
+    
+    func completionService(page: Page){
+        self.page = page
+        self.movies = page.results
+        print(movies)
+    }
+    
+    override func viewDidLoad() {
+        
+        let _ = IMDBIntegration().getDataFromUrl(completion: completionService(page:))
+        
+        super.viewDidLoad()
+        
+    }
     
 }

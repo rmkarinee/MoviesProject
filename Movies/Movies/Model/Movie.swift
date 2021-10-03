@@ -15,7 +15,7 @@ struct Movie: Decodable {
     var title: String?
     var overview: String?
     var year: Int?
-    var poster_path: String?
+    var poster_path:String?
     var vote_average: Float?
     var vote_count: Int?
 

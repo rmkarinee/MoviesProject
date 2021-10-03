@@ -33,8 +33,7 @@ class MovieTableViewController: UIViewController{
         
         movieTableView.delegate = self
         movieTableView.dataSource = self
-        
-        self.movieTableView.register(MovieCell.self, forCellReuseIdentifier: "movieReusableCell")
+
         
         super.viewDidLoad()
         
@@ -61,14 +60,13 @@ extension MovieTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let movie = movies[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieReusableCell", for: indexPath) as! MovieCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieReusableCell", for: indexPath) as! MovieTableViewCell
+
         
-        print("CELLL:::: \(cell)")
-        //celula.movieImageView.image = filme.image
         cell.movieLabelTitle.text = movie.title
         cell.movieLabelDescription.text = movie.overview
-        
-        
+        cell.movieImageView.image = UIImage(named: "filme1")
+
         /*
         Arredondar as cordas e cortar para as bordas
         celula.layer.cornerRadius = 20
@@ -81,6 +79,7 @@ extension MovieTableViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
         
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

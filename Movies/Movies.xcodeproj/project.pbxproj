@@ -20,6 +20,7 @@
 		69039A5F25E2FF8D00B5CA5A /* DetalheFilmeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69039A5E25E2FF8D00B5CA5A /* DetalheFilmeViewController.swift */; };
 		698A0D0826D9349000A0301F /* IMDBIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698A0D0726D9349000A0301F /* IMDBIntegration.swift */; };
 		6992B4F026F0B08200A4CC2C /* MovieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6992B4EF26F0B08200A4CC2C /* MovieTableViewController.swift */; };
+		69AB4B6B270A2EFC004B6E17 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AB4B6A270A2EFC004B6E17 /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		69039A5E25E2FF8D00B5CA5A /* DetalheFilmeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalheFilmeViewController.swift; sourceTree = "<group>"; };
 		698A0D0726D9349000A0301F /* IMDBIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDBIntegration.swift; sourceTree = "<group>"; };
 		6992B4EF26F0B08200A4CC2C /* MovieTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewController.swift; sourceTree = "<group>"; };
+		69AB4B6A270A2EFC004B6E17 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				69039A5925E2E9FA00B5CA5A /* MovieCell.swift */,
+				69AB4B6A270A2EFC004B6E17 /* MovieTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			files = (
 				6992B4F026F0B08200A4CC2C /* MovieTableViewController.swift in Sources */,
 				698A0D0826D9349000A0301F /* IMDBIntegration.swift in Sources */,
+				69AB4B6B270A2EFC004B6E17 /* MovieTableViewCell.swift in Sources */,
 				69039A2625E2D11500B5CA5A /* ViewController.swift in Sources */,
 				69039A5A25E2E9FA00B5CA5A /* MovieCell.swift in Sources */,
 				69039A2225E2D11500B5CA5A /* AppDelegate.swift in Sources */,

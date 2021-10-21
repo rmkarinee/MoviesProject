@@ -47,5 +47,25 @@ class IMDBIntegration{
         task.resume()
         
     }
+    
+    func getPosterImage(posterPath: String, completion: @escaping (UIImage) -> Void){
+        
+        let session = URLSession.shared
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + posterPath) else {return}
 
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print("An request error occurred: \(String(describing: error))")
+                return
+            }
+            
+            if let data = data, let image = UIImage(data: data) {
+                completion(image)
+            }
+            
+        }
+        
+        task.resume()
+        return
+    }
 }

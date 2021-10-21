@@ -33,7 +33,8 @@ class MovieTableViewController: UIViewController{
         
         movieTableView.delegate = self
         movieTableView.dataSource = self
-
+        
+        movieTableView.register(UINib(nibName: "MoviesTableViewCell", bundle: nil), forCellReuseIdentifier: "reusableMovieCell")
         
         super.viewDidLoad()
         
@@ -60,22 +61,22 @@ extension MovieTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let movie = movies[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieReusableCell", for: indexPath) as! MovieTableViewCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reusableMovieCell", for: indexPath) as! MoviesTableViewCell
         
-        cell.movieLabelTitle.text = movie.title
-        cell.movieLabelDescription.text = movie.overview
-        cell.movieImageView.image = UIImage(named: "filme1")
-
-        /*
-        Arredondar as cordas e cortar para as bordas
-        celula.layer.cornerRadius = 20
-        celula.clipsToBounds = true
-        */
         
-//        celula.textLabel?.text = filme.titulo
-//        celula.imageView?.image = filme.imagem
-//
+        cell.descriptionMovieTableView.text = movie.overview
+        cell.titleMovieTableView.text = movie.title
+        
+        IMDBIntegration().getPosterImage(posterPath: movie.poster_path!) { image in
+            DispatchQueue.main.async {
+                cell.imageMovieTableView.image = image
+            }
+        }
+
+        //Arredondar as cordas e cortar para as bordas
+        cell.imageMovieTableView.layer.cornerRadius = 20
+        cell.imageMovieTableView.clipsToBounds = true
+
         return cell
         
     }

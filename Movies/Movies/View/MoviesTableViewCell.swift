@@ -1,19 +1,18 @@
 //
-//  MovieTableViewCell.swift
+//  MoviesTableViewCell.swift
 //  Movies
 //
-//  Created by Karine Rodrigues on 03/10/21.
+//  Created by Karine Rodrigues Mendonça on 03/10/21.
 //
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var movieLabelDescription: UITextView!
-    @IBOutlet weak var movieLabelTitle: UILabel!
-    @IBOutlet weak var movieImageView: UIImageView!
+class MoviesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var descriptionMovieTableView: UILabel!
+    @IBOutlet weak var titleMovieTableView: UILabel!
+    @IBOutlet weak var imageMovieTableView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +23,5 @@ class MovieTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

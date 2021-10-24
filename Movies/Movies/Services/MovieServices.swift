@@ -8,16 +8,13 @@
 import Foundation
 import UIKit
 
-class IMDBIntegration{
-    
-    let apiKey: String = "38e89175a62e8680dfb4ade7ce733f0f"
-    let language: String = "pt-BR"
+class MovieServices{
 
-    func getDataFromUrl(completion: @escaping (Page) -> Void){
+    func getPopularMovieFromUrl(completion: @escaping (Page) -> Void){
         
         let session = URLSession.shared
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=" + self.apiKey + "&language=" + self.language + "&page=1")!
+        let url = URL(string: ServiceConstants.baseURL + "popular?api_key=" + ServiceConstants.apiKey + "&language=" + ServiceConstants.language + "&page=1")!
         
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
             
@@ -51,7 +48,7 @@ class IMDBIntegration{
     func getPosterImage(posterPath: String, completion: @escaping (UIImage) -> Void){
         
         let session = URLSession.shared
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + posterPath) else {return}
+        guard let url = URL(string: ServiceConstants.imageBaseURL + posterPath) else {return}
 
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -68,4 +65,11 @@ class IMDBIntegration{
         task.resume()
         return
     }
+}
+
+struct ServiceConstants {
+    static let apiKey: String = "38e89175a62e8680dfb4ade7ce733f0f"
+    static let language: String = "pt-BR"
+    static let baseURL: String = "https://api.themoviedb.org/3/movie/"
+    static let imageBaseURL: String = "https://image.tmdb.org/t/p/w500"
 }

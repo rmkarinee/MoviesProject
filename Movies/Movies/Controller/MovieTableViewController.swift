@@ -29,7 +29,7 @@ class MovieTableViewController: UIViewController{
     
     override func viewDidLoad() {
         
-        let _ = IMDBIntegration().getDataFromUrl(completion: completionService(page:))
+        let _ = MovieServices().getPopularMovieFromUrl(completion: completionService(page:))
         
         movieTableView.delegate = self
         movieTableView.dataSource = self
@@ -67,13 +67,12 @@ extension MovieTableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.descriptionMovieTableView.text = movie.overview
         cell.titleMovieTableView.text = movie.title
         
-        IMDBIntegration().getPosterImage(posterPath: movie.poster_path!) { image in
+        MovieServices().getPosterImage(posterPath: movie.poster_path!) { image in
             DispatchQueue.main.async {
                 cell.imageMovieTableView.image = image
             }
         }
 
-        //Arredondar as cordas e cortar para as bordas
         cell.imageMovieTableView.layer.cornerRadius = 20
         cell.imageMovieTableView.clipsToBounds = true
 
